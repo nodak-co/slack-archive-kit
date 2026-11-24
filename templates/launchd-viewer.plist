@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- 맥에서 보기 화면 서버를 로그인할 때마다 자동으로 띄운다.
+     바꿀 곳: __KIT__ (이 스킬 폴더 절대경로) · __HOME__ (내 홈 폴더 절대경로)
+     설치: cp 이 파일 ~/Library/LaunchAgents/local.slack-archive-viewer.plist
+           launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/local.slack-archive-viewer.plist
+     끄기: launchctl bootout gui/$(id -u)/local.slack-archive-viewer -->
+<plist version="1.0"><dict>
+  <key>Label</key><string>local.slack-archive-viewer</string>
+  <key>ProgramArguments</key><array>
+    <string>/usr/bin/python3</string>
+    <string>__KIT__/scripts/viewer/server.py</string>
+  </array>
+  <key>EnvironmentVariables</key><dict>
+    <key>SLACK_ARCHIVE_HOME</key><string>__HOME__/slack-archive</string>
+  </dict>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>StandardOutPath</key><string>__HOME__/slack-archive/viewer.log</string>
+  <key>StandardErrorPath</key><string>__HOME__/slack-archive/viewer.log</string>
+</dict></plist>

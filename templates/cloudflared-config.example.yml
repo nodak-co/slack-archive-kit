@@ -1,0 +1,11 @@
+# ~/.cloudflared/config.yml — 보기 화면(127.0.0.1:43140)만 공개 주소로 연다. 데이터(SQLite)는 이 컴퓨터에만 있다.
+# 만드는 순서(터미널, 한 번만):
+#   cloudflared tunnel login                      # 브라우저에서 내 도메인 선택
+#   cloudflared tunnel create slack-archive       # 터널 ID 와 자격증명 json 이 생김
+#   cloudflared tunnel route dns slack-archive archive.내도메인.com
+tunnel: slack-archive
+credentials-file: /Users/내이름/.cloudflared/터널ID.json
+ingress:
+  - hostname: archive.내도메인.com
+    service: http://127.0.0.1:43140
+  - service: http_status:404

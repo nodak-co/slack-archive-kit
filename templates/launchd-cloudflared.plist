@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- cloudflared 터널을 자동으로 띄운다 (cloudflared-config.example.yml 을 ~/.cloudflared/config.yml 로 채운 뒤).
+     __HOME__ 를 내 홈 폴더로. cloudflared 경로는 `which cloudflared` 로 확인 (애플실리콘 brew = /opt/homebrew/bin) -->
+<plist version="1.0"><dict>
+  <key>Label</key><string>local.slack-archive-tunnel</string>
+  <key>ProgramArguments</key><array>
+    <string>/opt/homebrew/bin/cloudflared</string><string>tunnel</string><string>run</string>
+  </array>
+  <key>RunAtLoad</key><true/><key>KeepAlive</key><true/>
+  <key>StandardOutPath</key><string>__HOME__/slack-archive/tunnel.log</string>
+  <key>StandardErrorPath</key><string>__HOME__/slack-archive/tunnel.log</string>
+</dict></plist>
